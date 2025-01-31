@@ -85,21 +85,19 @@
     </div>
 
     <script>
-        // 현재 페이지 URL을 세션 스토리지에 저장 (이전 페이지 정보 유지)
-        document.addEventListener("DOMContentLoaded", function () {
-            if (sessionStorage.getItem("previousURL") !== window.location.href) {
-                sessionStorage.setItem("previousURL", window.location.href);
-            }
-        });
+        // 현재 페이지에 들어올 때 이전 URL 저장
+        if (document.referrer) {
+            sessionStorage.setItem("previousURL", document.referrer);
+        }
 
         function goBack() {
             let previousURL = sessionStorage.getItem("previousURL");
 
             if (!previousURL || previousURL.includes("notion.so")) {
-                // 만약 이전 URL이 없거나 노션에서 직접 실행한 경우
-                window.location.href = "https://www.notion.so/";
+                // 만약 이전 URL이 없거나 Notion 내부 페이지일 경우 특정 페이지로 이동
+                window.location.href = "https://your-custom-fallback-url.com/";
             } else {
-                // 저장된 이전 페이지로 이동
+                // 일반적인 뒤로 가기 동작
                 window.location.href = previousURL;
             }
         }
