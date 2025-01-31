@@ -87,7 +87,13 @@
 
     <script>
         function goBack() {
-            window.history.back();
+            if (window.parent !== window) {
+                // 노션 iframe 안에 있을 때 부모 창을 조작
+                window.parent.location.href = document.referrer;
+            } else {
+                // 일반 브라우저에서 뒤로 가기 동작
+                window.history.back();
+            }
         }
     </script>
 
