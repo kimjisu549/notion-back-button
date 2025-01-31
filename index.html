@@ -85,8 +85,8 @@
     </div>
 
     <script>
-        // 현재 페이지가 로드될 때 이전 URL 저장
-        if (document.referrer) {
+        // 이전 페이지가 있을 경우 저장
+        if (document.referrer && !document.referrer.includes(window.location.hostname)) {
             sessionStorage.setItem("previousURL", document.referrer);
         }
 
@@ -96,7 +96,7 @@
             if (!previousURL || previousURL === "") {
                 // 이전 URL이 없으면 기본 페이지로 이동
                 alert("이전 페이지를 찾을 수 없습니다. 기본 페이지로 이동합니다.");
-                window.location.href = "https://www.example.com"; // 원하는 기본 URL
+                window.location.href = "https://www.your-default-url.com"; // 기본 URL
             } else {
                 // 이전 페이지로 이동
                 window.location.href = previousURL;
