@@ -4,13 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>뒤로 가기</title>
+    <style>
+        body {
+            background: transparent; /* 배경 완전 투명 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "맑은 고딕";
+        }
+        
+        .button-container {
+            position: relative;
+            width: 95%;
+            height: 55px;
+        }
+
+        /* 기본적으로 보여지는 파란색 버튼 */
+        .back-button {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            color: #1c5efd;
+            border: 1px solid #1c5efd;
+            font-size: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            gap: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        /* hover되거나 active될 때 숨겨지는 스타일 */
+        .back-button:hover,
+        .back-button:active {
+            opacity: 0;
+            pointer-events: none; /* 클릭 방지 */
+        }
+
+        /* 기본적으로 숨겨져 있는 흰색 버튼 */
+        .white-button {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #1c5efd;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            font-size: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* hover되거나 active될 때 보이도록 설정 */
+        .button-container:hover .white-button,
+        .button-container:active .white-button {
+            opacity: 1;
+        }
+
+    </style>
 </head>
 <body>
-    <button onclick="goBack()">뒤로 가기</button>
+
+    <div class="button-container">
+        <button class="back-button" onclick="goBack()">
+            <img src="로고.png" alt="로고이미지" width="22px" height="35px">
+            뒤로 가기
+        </button>
+        <button class="white-button" onclick="goBack()">
+            <img src="흰로고.png" alt="로고이미지" width="27px" height="55px">
+            뒤로 가기
+        </button>
+    </div>
+
     <script>
         function goBack() {
             window.history.back();
         }
     </script>
+
 </body>
 </html>
