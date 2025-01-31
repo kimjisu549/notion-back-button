@@ -85,7 +85,7 @@
     </div>
 
     <script>
-        // 현재 페이지에 들어올 때 이전 URL 저장
+        // 현재 페이지가 로드될 때 이전 URL 저장
         if (document.referrer) {
             sessionStorage.setItem("previousURL", document.referrer);
         }
@@ -93,11 +93,12 @@
         function goBack() {
             let previousURL = sessionStorage.getItem("previousURL");
 
-            if (!previousURL || previousURL.includes("notion.so")) {
-                // 만약 이전 URL이 없거나 Notion 내부 페이지일 경우 특정 페이지로 이동
-                window.location.href = "https://your-custom-fallback-url.com/";
+            if (!previousURL || previousURL === "") {
+                // 이전 URL이 없으면 기본 페이지로 이동
+                alert("이전 페이지를 찾을 수 없습니다. 기본 페이지로 이동합니다.");
+                window.location.href = "https://www.example.com"; // 원하는 기본 URL
             } else {
-                // 일반적인 뒤로 가기 동작
+                // 이전 페이지로 이동
                 window.location.href = previousURL;
             }
         }
